@@ -35,7 +35,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user", name="user")
+     * @Route("/", name="user")
      */
     public function index(SessionInterface $session)
     {
@@ -118,95 +118,6 @@ class UserController extends AbstractController
         $session = New Session();
         $session->clear();
 
-        return new Response('Logout successful');
-    }
-
-    /**
-     * @Route("/user/{email}", name="user_show")
-     */
-    public function show($email)
-    {
-        $user = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->find($email);
-
-        if (!$user) {
-            throw $this->createNotFoundException(
-                'No user found for email '.$email
-            );
-        }
-
-        return $this->render('user/show.html.twig', [
-            'id'        => $user->getId(),
-            'email'     => $user->getEmail(),
-            'password'  => $user->getPassword()
-        ]);
-    }
-
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function showAllUser()
-    {
-        $users = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findAll();
-
-        if (!$users) {
-            throw $this->createNotFoundException(
-                'No event found'
-            );
-        }
-
-        return $this->render('security/showAllUser.html.twig', array('users' => $users));
-    }
-
-    /**
-     * @Route("/admin/delete/{id}", name="admin_delete")
-     */
-    public function delete($id)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $entityManager->getRepository(User::class)->findOneById($id);
-
-        if(!$user){
-            throw $this->createNotFoundException('No user found for id '.$id);
-        }
-
-        $entityManager->remove($user);
-        $entityManager->flush();
-
         return $this->render('index.html.twig');
-    }
-
-    /**
-     * @Route("/admin/edit/{id}", name="admin_edit")
-     */
-    public function edit($id, Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $entityManager->getRepository(User::class)->findOneById($id);
-
-        if(!$user)
-            throw $this->createNotFoundException('No user found for id '.$id);
-        else {
-            $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
-
-            if($form->isSubmitted() && $form->isValid()) {
-                $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-                $user->setPassword($password);
-                $user->setIsActive(true);
-                $user->getRoles("ROLE_ADMIN");
-                $entityManager->flush();
-                $this->addFlash('success', 'Votre compte à bien été enregistré.');
-            }
-
-            return $this->render('security/edit.html.twig', [
-                'mainNavLogin' => true, 'title' => 'Inscription',
-                'form' => $form->createView(),
-                'mainNavRegistration' => true,
-            ]);
-        }
     }
 }

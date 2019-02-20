@@ -33,7 +33,7 @@
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item {% if mainNavAdmin is defined %}active{% endif %}">
-                    <a class="nav-link" href="{{path('admin')}}">Espace admin</a>
+                    <a class="nav-link" href="{{path('users')}}">Espace admin</a>
                 </li>
             {% endif %}
         </ul>
