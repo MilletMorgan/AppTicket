@@ -1,0 +1,15 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+#logout:
+#      path: /logout
+#      controller: App\Controller\UserController::logout
+
+#login:
+#      path: /login
+#      controller: App\Controller\UserController::login
+
+#register:
+#      path: /register
+#      controller: App\Controller\UserController::register

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show all users{% endblock %}
+
+{% block body %}
+    <h1>Listes de tout les comptes</h1>
+    <br>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                {% for user in users %}
+                    <li>{{ user.id }}</li>
+                {% endfor %}
+            </td>
+            <td>
+                {% for user in users %}
+                    <li>{{ user.email }}</li>
+                {% endfor %}
+            </td>
+            <td>
+                {% for user in users %}
+                    <li>{{ user.password }}</li>
+                {% endfor %}
+            </td>
+            <td>
+                {% for user in users %}
+                    <li><a href="http://127.0.0.1:8000/admin/edit/{{ user.id }}" style="color: #0000F0;">Modifier le compte</a></li>
+                {% endfor %}
+            </td>
+            <td>
+                {% for user in users %}
+                    <li><a href="http://127.0.0.1:8000/admin/delete/{{ user.id }}" style="color: #bf0f2d;">Supprimer le compte</a></li>
+                {% endfor %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

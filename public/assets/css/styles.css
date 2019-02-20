@@ -1,0 +1,29 @@
+/*base*/
+body{background: #ebeff2;}
+.bck1{background: #fff;}
+
+/*generique*/
+.padded{padding: 15px;}
+
+/*header*/
+header#header {margin-bottom: 20px;padding: 10px;}
+header#header h1 {text-align: center;color: #5cb85c;}
+
+/*footer*/
+footer#footer{margin-top: 20px;padding: 10px;}
+
+a, a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-align: center!important;
+}
+
+li,a{
+    text-align: center!important;
+}
+
+li {list-style: none;}
+
+th {
+    text-align: center!important;
+}

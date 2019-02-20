@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show user{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Compte</h1>
+        <br>
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <li>{{ id }}</li>
+                </td>
+                <td>
+                    <li>{{ email }}</li>
+                </td>
+                <td>
+                    <li>{{ password }}</li>
+                </td>
+                <td>
+                    <li><button type="button" class="btn btn-primary"><a href="http://127.0.0.1:8000/admin/edit/{{ id }}">Modifier le compte</a></button></li>
+                </td>
+                <td>
+                    <li><button type="button" class="btn btn-danger"><a href="http://127.0.0.1:8000/admin/delete/{{ id }}">Supprimer le compte</a></button></li>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
